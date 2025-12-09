@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Cookie Bliss – Cookies</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Découvrez la gamme de cookies artisanaux Cookie Bliss : chocolat, praliné, éditions limitées et plus encore.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --color-primary:#C88A5B;
+      --color-primary-dark:#a36c41;
+      --color-secondary:#F5E9DA;
+      --color-bg:#FFFFFF;
+      --color-text:#333333;
+      --color-muted:#777777;
+      --shadow-soft:0 10px 30px rgba(0,0,0,0.08);
+      --radius-lg:24px;
+      --radius-md:16px;
+      --radius-pill:999px;
+      --max-width:1120px;
+      --header-height:72px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Poppins',system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:var(--color-bg);
+      color:var(--color-text);
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+    button{font-family:inherit;border:none;background:none;cursor:pointer}
+    .container{width:100%;max-width:var(--max-width);margin:0 auto;padding:0 1.5rem}
+    header{
+      position:sticky;top:0;z-index:50;
+      background:rgba(255,255,255,0.9);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(0,0,0,0.04);
+    }
+    .header-inner{
+      height:var(--header-height);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1.5rem;
+    }
+    .logo{
+      font-family:'Playfair Display',serif;
+      font-size:1.4rem;
+      font-weight:600;
+      letter-spacing:0.06em;
+      text-transform:uppercase;
+      padding:0.4rem 0.9rem;
+      border-radius:999px;
+      border:1px solid rgba(0,0,0,0.06);
+      background:linear-gradient(135deg, #fff, #fdf5ee);
+    }
+    nav{display:flex;align-items:center;gap:1.5rem}
+    .nav-links{
+      list-style:none;
+      display:flex;
+      align-items:center;
+      gap:1.5rem;
+      font-size:0.95rem;
+    }
+    .nav-links a{
+      position:relative;
+      padding-bottom:0.1rem;
+    }
+    .nav-links a::after{
+      content:"";
+      position:absolute;
+      left:0;bottom:0;
+      width:0;height:2px;
+      background:var(--color-primary);
+      transition:width 0.25s ease;
+    }
+    .nav-links a:hover::after{width:100%}
+    .nav-cta{
+      padding:0.5rem 1.1rem;
+      border-radius:var(--radius-pill);
+      border:1px solid rgba(0,0,0,0.05);
+      background:var(--color-secondary);
+      font-size:0.9rem;
+    }
+    .burger{
+      display:none;
+      width:32px;height:32px;
+      border-radius:999px;
+      border:1px solid rgba(0,0,0,0.08);
+      align-items:center;
+      justify-content:center;
+    }
+    .burger span{
+      position:relative;
+      width:16px;height:2px;
+      background:var(--color-text);
+      display:block;
+    }
+    .burger span::before,
+    .burger span::after{
+      content:"";
+      position:absolute;
+      left:0;
+      width:16px;height:2px;
+      background:var(--color-text);
+      transition:transform 0.25s ease, top 0.25s ease, opacity 0.25s ease;
+    }
+    .burger span::before{top:-5px}
+    .burger span::after{top:5px}
+    .burger.active span{background:transparent}
+    .burger.active span::before{top:0;transform:rotate(45deg)}
+    .burger.active span::after{top:0;transform:rotate(-45deg)}
+
+    main{min-height:calc(100vh - var(--header-height) - 220px);}
+
+    .section{
+      padding:3.5rem 0;
+    }
+    .section-header{
+      text-align:center;
+      margin-bottom:2rem;
+    }
+    .section-kicker{
+      font-size:0.8rem;
+      letter-spacing:0.14em;
+      text-transform:uppercase;
+      color:var(--color-muted);
+      margin-bottom:0.4rem;
+    }
+    .section-title{
+      font-family:'Playfair Display',serif;
+      font-size:1.7rem;
+      margin-bottom:0.4rem;
+    }
+    .section-subtitle{
+      font-size:0.95rem;
+      color:var(--color-muted);
+      max-width:520px;
+      margin:0 auto;
+    }
+
+    .filters{
+      display:flex;
+      flex-wrap:wrap;
+      gap:0.7rem;
+      justify-content:center;
+      margin-bottom:2rem;
+    }
+    .filter-btn{
+      padding:0.5rem 1.2rem;
+      border-radius:var(--radius-pill);
+      border:1px solid rgba(0,0,0,0.08);
+      background:#fff;
+      font-size:0.85rem;
+      cursor:pointer;
+    }
+    .filter-btn.active{
+      background:var(--color-primary);
+      color:#fff;
+      border-color:var(--color-primary);
+    }
+
+    .products-grid{
+      display:grid;
+      gap:1.8rem;
+    }
+    .product-card{
+      background:#fff;
+      border-radius:var(--radius-lg);
+      overflow:hidden;
+      box-shadow:var(--shadow-soft);
+      display:flex;
+      flex-direction:column;
+    }
+    .product-image{
+      position:relative;
+      padding-top:64%;
+      background:linear-gradient(135deg,#fbeade,#f7d3b9);
+    }
+    .product-image::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:url("https://images.pexels.com/photos/992820/pexels-photo-992820.jpeg?auto=compress&cs=tinysrgb&w=1200") center/cover no-repeat;
+      mix-blend-mode:multiply;
+      opacity:0.9;
+    }
+    .product-tag{
+      position:absolute;
+      left:1rem;top:1rem;
+      padding:0.35rem 0.8rem;
+      border-radius:var(--radius-pill);
+      background:rgba(255,255,255,0.96);
+      font-size:0.75rem;
+      text-transform:uppercase;
+      letter-spacing:0.12em;
+    }
+    .product-body{
+      padding:1.2rem 1.4rem 1.4rem;
+      display:flex;
+      flex-direction:column;
+      gap:0.5rem;
+    }
+    .product-title{
+      font-weight:600;
+      font-size:1rem;
+    }
+    .product-desc{
+      font-size:0.9rem;
+      color:var(--color-muted);
+    }
+    .product-meta{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-size:0.9rem;
+      margin-top:0.2rem;
+    }
+    .product-price{
+      font-weight:600;
+    }
+    .product-note{
+      font-size:0.8rem;
+      color:var(--color-muted);
+    }
+
+    .order-section{
+      margin-top:3rem;
+      background:var(--color-secondary);
+      border-radius:var(--radius-lg);
+      padding:2rem 1.6rem;
+      display:grid;
+      gap:1.4rem;
+    }
+    .order-title{
+      font-family:'Playfair Display',serif;
+      font-size:1.3rem;
+      margin-bottom:0.4rem;
+    }
+    .order-text{
+      font-size:0.95rem;
+      color:var(--color-text);
+    }
+    .order-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:0.8rem;
+    }
+    .btn-primary{
+      padding:0.9rem 1.8rem;
+      border-radius:var(--radius-pill);
+      background:var(--color-primary);
+      color:#fff;
+      font-size:0.95rem;
+      font-weight:500;
+      box-shadow:var(--shadow-soft);
+      transition:transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+    .btn-primary:hover{
+      transform:translateY(-1px);
+      background:var(--color-primary-dark);
+      box-shadow:0 16px 40px rgba(0,0,0,0.14);
+    }
+    .btn-outline{
+      padding:0.9rem 1.6rem;
+      border-radius:var(--radius-pill);
+      border:1px solid rgba(0,0,0,0.15);
+      font-size:0.9rem;
+      background:#fff;
+    }
+
+    footer{
+      border-top:1px solid rgba(0,0,0,0.06);
+      padding:2.2rem 0 2rem;
+      margin-top:3rem;
+    }
+    .footer-inner{
+      display:flex;
+      flex-direction:column;
+      gap:1.2rem;
+      font-size:0.85rem;
+      color:var(--color-muted);
+    }
+    .footer-top{
+      display:flex;
+      flex-wrap:wrap;
+      gap:1.5rem;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .footer-brand{
+      font-family:'Playfair Display',serif;
+      font-size:1.1rem;
+    }
+    .footer-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:1rem;
+    }
+    .footer-links a{
+      text-decoration:underline;
+      text-decoration-color:rgba(0,0,0,0.2);
+      text-underline-offset:3px;
+    }
+    .footer-bottom{
+      display:flex;
+      flex-wrap:wrap;
+      gap:0.6rem;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    @media (min-width:768px){
+      .products-grid{
+        grid-template-columns:repeat(3,minmax(0,1fr));
+      }
+      .order-section{
+        grid-template-columns:1.5fr 1fr;
+        padding:2.2rem 2rem;
+      }
+      .order-title{font-size:1.45rem}
+    }
+
+    @media (max-width:767px){
+      .nav-links{
+        position:fixed;
+        inset:var(--header-height) 0 auto 0;
+        padding:1.2rem 1.5rem 1.6rem;
+        background:rgba(255,255,255,0.98);
+        flex-direction:column;
+        align-items:flex-start;
+        gap:1rem;
+        transform:translateY(-110%);
+        opacity:0;
+        pointer-events:none;
+        transition:transform 0.25s ease, opacity 0.25s ease;
+      }
+      header.nav-open .nav-links{
+        transform:translateY(0);
+        opacity:1;
+        pointer-events:auto;
+      }
+      .nav-cta{display:none}
+      .burger{display:inline-flex}
+      .section{padding-top:3rem}
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo">Cookie Bliss</a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="produits.html">Cookies</a></li>
+        <li><a href="histoire.html">Notre histoire</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <button class="nav-cta" onclick="window.location.href='index.html#contact'">Commander</button>
+      <button class="burger" aria-label="Ouvrir le menu">
+        <span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-kicker">Notre gamme</p>
+        <h1 class="section-title">Les cookies Cookie Bliss</h1>
+        <p class="section-subtitle">Une carte courte, travaillée, avec quelques incontournables disponibles toute l’année et des éditions limitées qui suivent les saisons.</p>
+      </div>
+
+      <div class="filters" aria-label="Filtres de cookies">
+        <button class="filter-btn active" type="button" data-filter="all">Tous</button>
+        <button class="filter-btn" type="button" data-filter="chocolat">Chocolat</button>
+        <button class="filter-btn" type="button" data-filter="coeur">Cœur fondant</button>
+        <button class="filter-btn" type="button" data-filter="classiques">Classiques</button>
+        <button class="filter-btn" type="button" data-filter="limite">Éditions limitées</button>
+      </div>
+
+      <div class="products-grid">
+        <article class="product-card" data-category="chocolat,coeur">
+          <div class="product-image">
+            <span class="product-tag">Chocolat</span>
+          </div>
+          <div class="product-body">
+            <h2 class="product-title">Double Chocolat Noir &amp; Lait</h2>
+            <p class="product-desc">Cookie ultra gourmand avec deux types de chocolat, croustillant sur les bords et cœur fondant. La valeur sûre pour les amoureux du chocolat.</p>
+            <div class="product-meta">
+              <span class="product-price">3,50 € l’unité</span>
+              <span class="product-note">Boîte de 6 : 19,80 €</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="classiques">
+          <div class="product-image">
+            <span class="product-tag">Classique</span>
+          </div>
+          <div class="product-body">
+            <h2 class="product-title">Chocolat Lait &amp; Noisettes</h2>
+            <p class="product-desc">Base légèrement vanillée, grosses pépites de chocolat au lait et éclats de noisettes torréfiées. Une recette simple, généreuse et addictive.</p>
+            <div class="product-meta">
+              <span class="product-price">3,20 € l’unité</span>
+              <span class="product-note">Boîte de 6 : 18,50 €</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="coeur,chocolat">
+          <div class="product-image">
+            <span class="product-tag">Cœur fondant</span>
+          </div>
+          <div class="product-body">
+            <h2 class="product-title">Cœur Nutella®</h2>
+            <p class="product-desc">Cookie doré aux bords, avec un généreux cœur de pâte à tartiner chocolat-noisette qui coule encore légèrement à la dégustation.</p>
+            <div class="product-meta">
+              <span class="product-price">3,80 € l’unité</span>
+              <span class="product-note">Boîte de 6 : 21,50 €</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="limite">
+          <div class="product-image">
+            <span class="product-tag">Édition limitée</span>
+          </div>
+          <div class="product-body">
+            <h2 class="product-title">Cookie du Mois</h2>
+            <p class="product-desc">Une recette éphémère qui change chaque mois : pistache-framboise, s’mores, citron-meringué revisité… À découvrir sur nos réseaux.</p>
+            <div class="product-meta">
+              <span class="product-price">à partir de 3,80 €</span>
+              <span class="product-note">Selon la création du moment</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="classiques">
+          <div class="product-image">
+            <span class="product-tag">Sans noix</span>
+          </div>
+          <div class="product-body">
+            <h2 class="product-title">Cookie Tout Chocolat Blanc</h2>
+            <p class="product-desc">Cookie moelleux aux notes de vanille et de beurre, parsemé de larges éclats de chocolat blanc pour un résultat très fondant.</p>
+            <div class="product-meta">
+              <span class="product-price">3,20 € l’unité</span>
+              <span class="product-note">Boîte de 6 : 18,50 €</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="coeur,limite">
+          <div class="product-image">
+            <span class="product-tag">Cœur coulant</span>
+          </div>
+          <div class="product-body">
+            <h2 class="product-title">Caramel Beurre Salé Cœur Coulant</h2>
+            <p class="product-desc">Un cookie doux, généreux, avec un cœur de caramel beurre salé maison qui se révèle à la première bouchée. Un vrai dessert à lui tout seul.</p>
+            <div class="product-meta">
+              <span class="product-price">3,90 € l’unité</span>
+              <span class="product-note">Boîte de 6 : 22,50 €</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <section class="order-section" id="commander" aria-labelledby="order-title">
+        <div>
+          <h2 class="order-title" id="order-title">Comment commander vos cookies ?</h2>
+          <p class="order-text">Les commandes se font en direct, pour garder une production artisanale et éviter le gaspillage. Envoyez un message avec :</p>
+          <ul class="order-text" style="margin-top:0.6rem;padding-left:1.2rem;">
+            <li>les recettes souhaitées et les quantités (minimum conseillé : 4 cookies) ;</li>
+            <li>la date et l’horaire de retrait souhaités ;</li>
+            <li>vos éventuelles contraintes (sans noix, événement, cadeau…).</li>
+          </ul>
+          <p class="order-text" style="margin-top:0.8rem;">Une confirmation vous est envoyée avec le montant total et les modalités de règlement (espèces, virement, ou autre selon le moment).</p>
+        </div>
+        <div class="order-actions">
+          <button class="btn-primary" type="button" onclick="window.location.href='https://wa.me/0000000000'">Commander sur WhatsApp</button>
+          <button class="btn-outline" type="button" onclick="window.location.href='mailto:contact@cookiebliss.fr?subject=Commande%20de%20cookies'">Commander par e-mail</button>
+        </div>
+      </section>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">Cookie Bliss</div>
+        <div>Cookies artisanaux, moelleux et généreux, faits maison avec amour.</div>
+      </div>
+      <div class="footer-links">
+        <a href="https://instagram.com/cookiebliss" target="_blank" rel="noreferrer">Instagram</a>
+        <a href="mailto:contact@cookiebliss.fr">Contact</a>
+        <a href="mentions-legales.html">Mentions légales</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Cookie Bliss – Tous droits réservés.</span>
+      <span>Site vitrine – fabrication artisanale de cookies.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    const header = document.querySelector('header');
+    const burger = document.querySelector('.burger');
+    const navLinks = document.querySelector('.nav-links');
+    if(burger && header && navLinks){
+      burger.addEventListener('click', ()=>{
+        burger.classList.toggle('active');
+        header.classList.toggle('nav-open');
+      });
+      navLinks.querySelectorAll('a').forEach(link=>{
+        link.addEventListener('click', ()=>{
+          burger.classList.remove('active');
+          header.classList.remove('nav-open');
+        });
+      });
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+      anchor.addEventListener('click', function(e){
+        const targetId = this.getAttribute('href').slice(1);
+        const target = document.getElementById(targetId);
+        if(target){
+          e.preventDefault();
+          target.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      });
+    });
+
+    const yearSpan = document.getElementById('year');
+    if(yearSpan){
+      yearSpan.textContent = new Date().getFullYear();
+    }
+
+    const filterButtons = document.querySelectorAll('[data-filter]');
+    const productCards = document.querySelectorAll('[data-category]');
+    if(filterButtons.length && productCards.length){
+      filterButtons.forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const filter = btn.getAttribute('data-filter');
+          filterButtons.forEach(b=>b.classList.remove('active'));
+          btn.classList.add('active');
+          productCards.forEach(card=>{
+            const categories = card.dataset.category.split(',').map(c=>c.trim());
+            if(filter === 'all' || categories.includes(filter)){
+              card.style.display = '';
+            }else{
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+    }
+  })();
+</script>
+</body>
+</html>
