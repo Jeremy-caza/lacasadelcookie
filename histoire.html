@@ -76,6 +76,8 @@
     .footer-links .social-icon{width:30px;height:30px;border-radius:50%;border:1px solid rgba(0,0,0,0.18);display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
     .footer-links .social-icon img{width:16px;height:16px;display:block}
     .footer-bottom{display:flex;flex-wrap:wrap;gap:0.6rem;justify-content:space-between;align-items:center}
+    .footer-brand-row{display:flex;align-items:center;gap:0.6rem;}
+    .footer-logo-secondary{height:26px;width:auto;display:block;}
 
     @media (min-width:768px){
       .story-grid{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr)}
@@ -195,7 +197,10 @@
   <div class="container footer-inner">
     <div class="footer-top">
       <div>
-        <div class="footer-brand">La Fabrique à Cookies</div>
+        <div class="footer-brand-row">
+          <div class="footer-brand">La Fabrique à Cookies</div>
+          <img src="images/logo-secondaire.png" alt="Logo secondaire La Fabrique à Cookies" class="footer-logo-secondary">
+        </div>
         <div>Le cookie plus balèze que mamie</div>
       </div>
       <div class="footer-links">
@@ -213,6 +218,7 @@
     </div>
   </div>
 </footer>
+
 
 <script>
   (function(){
