@@ -81,6 +81,9 @@
     .btn-primary{padding:0.9rem 1.8rem;border-radius:var(--radius-pill);background:var(--color-primary);color:#fff;font-size:0.95rem;font-weight:500;box-shadow:var(--shadow-soft);transition:transform .15s ease,box-shadow .15s ease,background .15s ease}
     .btn-primary:hover{transform:translateY(-1px);background:var(--color-primary-dark);box-shadow:0 16px 40px rgba(0,0,0,0.14)}
     .btn-secondary{padding:0.9rem 1.6rem;border-radius:var(--radius-pill);background:#fff;border:1px solid rgba(0,0,0,0.08);font-size:0.95rem;font-weight:500;display:inline-flex;align-items:center;gap:0.4rem}
+   .btn-cc{padding:0.9rem 1.6rem;border-radius:var(--radius-pill);background:#E53935;color:#fff;font-size:0.95rem;font-weight:600;display:inline-flex;align-items:center;gap:0.4rem;box-shadow:0 16px 40px rgba(229,57,53,0.25);transition:transform .15s ease,box-shadow .15s ease,filter .15s ease;animation:ccPulse 1.2s ease-in-out infinite}
+.btn-cc:hover{filter:brightness(0.95);box-shadow:0 18px 46px rgba(229,57,53,0.32)}
+@keyframes ccPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
     .hero-note{font-size:0.85rem;color:var(--color-muted)}
 
     .hero-media{position:relative;min-height:320px;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-soft);background:linear-gradient(135deg,rgba(200,138,91,0.06),rgba(245,233,218,0.9))}
@@ -113,6 +116,10 @@
     .why-icon{width:34px;height:34px;border-radius:999px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
     .why-title{font-weight:600;font-size:0.95rem;margin-bottom:0.2rem}
     .why-text{font-size:0.9rem;color:var(--color-muted)}
+
+    .calendly-wrap{background:#fff;border-radius:var(--radius-lg);box-shadow:var(--shadow-soft);overflow:hidden;border:1px solid rgba(0,0,0,0.06)}
+    .calendly-embed{min-width:320px;height:700px}
+@media (max-width:767px){.calendly-embed{height:820px}}
 
     .contact-band{background:linear-gradient(120deg,#000,#3b2416);color:#fff;border-radius:var(--radius-lg);padding:1.8rem 1.5rem;display:grid;gap:1.2rem;align-items:center;box-shadow:var(--shadow-soft)}
     .contact-band-title{font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:0.3rem}
@@ -192,7 +199,7 @@
         <h1 class="hero-title">La Casa Del Cookie, Le cookie plus balèze que mamie.</h1>
         <div class="hero-cta">
           <a href="produits.html" class="btn-primary">Découvrir les cookies</a>
-          <a href="#contact" class="btn-secondary">Contact &amp; commandes →</a>
+         <a href="https://calendly.com/lacasadelcookie/click-collect" class="btn-cc" target="_blank" rel="noreferrer">Click &amp; Collect →</a>
         </div>
         <p class="hero-note">Bienvenue dans mon atelier, qui sera bientôt votre nouveau péché mignon.</p>
       </div>
@@ -286,6 +293,20 @@
     </div>
   </section>
 
+  <section class="section" id="click-collect" aria-labelledby="cc-title">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-kicker">Click &amp; Collect</p>
+      <h2 class="section-title" id="cc-title">Réservez votre créneau de retrait</h2>
+      <p class="section-subtitle">Choisissez un horaire, validez, et récupérez vos cookies au labo à Soumoulou.</p>
+    </div>
+
+    <div class="calendly-wrap">
+      <div class="calendly-inline-widget" data-url="https://calendly.com/lacasadelcookie/click-collect?primary_color=f3e5aa" style="min-width:320px;height:700px;"></div>
+    </div>
+  </div>
+</section>
+
   <section class="section" id="contact" aria-labelledby="contact-title">
     <div class="container">
       <div class="contact-band">
@@ -300,7 +321,7 @@ Certains cookies sont également disponibles chez nos commerces partenaires : la
             <span>💬</span>
             <span>Écrire sur WhatsApp</span>
           </a>
-          <a class="btn-outline" href="sms:+33782163179">Écrire par SMS</a>
+        <a href="https://calendly.com/lacasadelcookie/click-collect" class="btn-cc" target="_blank" rel="noreferrer">Click &amp; Collect →</a>
         </div>
       </div>
     </div>
@@ -404,5 +425,6 @@ Certains cookies sont également disponibles chez nos commerces partenaires : la
     }
   })();
 </script>
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </body>
 </html>
